@@ -144,13 +144,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = [
-    "https://equipo4-gestor-de-recursos.vercel.app/",
-]
-ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://*.ngrok-free.app"]
+
 CORS_ALLOW_ALL_ORIGINS = True
+
+ALLOWED_HOSTS = ["*", ".vercel.app", ".ngrok-free.app"]
+CORS_ALLOWED_ORIGINS = [
+    "https://equipo4-gestor-de-recursos.vercel.app",
+    "https://8e19-190-121-129-147.ngrok-free.app",  # Tu backend activo
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://equipo4-gestor-de-recursos.vercel.app",
+    "https://8e19-190-121-129-147.ngrok-free.app",
+    "https://*.ngrok-free.app",
+]
+
 CORS_ALLOW_HEADERS = [
     "authorization",
     "content-type",
+    "x-csrftoken",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
