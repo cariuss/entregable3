@@ -154,9 +154,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://equipo4-gestor-de-recursos.vercel.app",
-    "https://8e19-190-121-129-147.ngrok-free.app",
-    "https://*.ngrok-free.app",
+    "https://equipo4-gestor-de-recursos.vercel.app/",
+    "https://8e19-190-121-129-147.ngrok-free.app/",
+    "https://*.ngrok-free.app/",
+    "https://entregable3-chi.vercel.app/",
 ]
 
 CORS_ALLOW_HEADERS = [
