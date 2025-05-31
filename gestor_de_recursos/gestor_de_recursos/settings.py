@@ -145,7 +145,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
-    "https://equipo4-gestor-de-recursos-jzwor71kj.vercel.app/p",
+    # "https://equipo4-gestor-de-recursos-jzwor71kj.vercel.app/p",
 ]
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://*.ngrok-free.app"]
