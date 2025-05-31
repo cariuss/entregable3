@@ -1,4 +1,3 @@
-
 Entregable #2 de gestor de recursos Grupo #4
 
 Integrantes
@@ -42,6 +41,6 @@ El despliegue del backend se hizo en ngrok dando apertura a un puerto para poder
 
 El front se desplegó en vercel teniendo el siguiente enlace https://equipo4-gestor-de-recursos.vercel.app/
 
-el backend está corriendo localmente en la pc de Carlos Guillent con este enlace https://1b8f-2801-1f1-0-11-00-143f.ngrok-free.app dando acceso de manera no tan acertiva a todo en general.
+el backend está corriendo localmente en la pc de Carlos Guillent con este enlace https://0204-2803-1800-4017-b892-702a-1cc1-fcbc-e3c8.ngrok-free.app dando acceso de manera no tan acertiva a todo en general.
 
 se debió abrir puertos y quitar auth para poder acceder a lo guardado en bd sin problemas.
