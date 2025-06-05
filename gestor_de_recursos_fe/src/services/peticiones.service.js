@@ -4,11 +4,16 @@ import api from "./axiosConfig";
 // Obtener todas las peticiones
 export const getPeticiones = async () => {
   try {
+    // Con el header X-Requested-With, DRF sabe que debe devolver JSON
     const response = await api.get("/peticiones/api/v1/");
-    return response.data;
+    console.log("getPeticiones → payload completo:", response.data);
+    return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
-    console.error("Error al obtener peticiones:", error.response?.data || error.message);
-    throw error; // Lanza el error para manejarlo en el componente
+    console.error(
+      "Error al obtener peticiones:",
+      error.response?.data || error.message
+    );
+    throw error;
   }
 };
 

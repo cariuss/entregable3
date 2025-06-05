@@ -9,7 +9,7 @@ from apps.peticiones.serializer import PeticionSerializer
 class PeticionViewSet(viewsets.ModelViewSet):
     queryset = SolicitudRecurso.objects.all()
     serializer_class = PeticionSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         user = self.request.user
