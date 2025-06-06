@@ -4,14 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tablaBody = document.querySelector('#tabla-peticiones tbody');
     const btnNueva = document.getElementById('btn-nueva-peticion');
 
-    // ---------------------------------------------------
-    // 1) Función para tomar el token de localStorage
-    // ---------------------------------------------------
+
     const getToken = () => localStorage.getItem('access_token');
 
-    // ---------------------------------------------------
-    // 2) Listar todas las peticiones
-    // ---------------------------------------------------
     if (tablaBody) {
         const token = getToken();
         let headersFetch = { 'Content-Type': 'application/json' };
@@ -51,9 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     tablaBody.appendChild(tr);
                 });
 
-                // ---------------------------------------------------
-                // 3) Botones “Editar” (redirigir al formulario)
-                // ---------------------------------------------------
+
                 document.querySelectorAll('.btn-editar-peticion').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const id = btn.getAttribute('data-id');
@@ -61,9 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
 
-                // ---------------------------------------------------
-                // 4) Botones “Eliminar”
-                // ---------------------------------------------------
+
                 document.querySelectorAll('.btn-eliminar-peticion').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const id = btn.getAttribute('data-id');
@@ -93,9 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.error('Error al obtener peticiones:', err));
     }
 
-    // ---------------------------------------------------
-    // 5) Botón “Nueva Petición” → redirige al formulario
-    // ---------------------------------------------------
     if (btnNueva) {
         btnNueva.addEventListener('click', () => {
             window.location.href = '/peticiones/nuevo/';

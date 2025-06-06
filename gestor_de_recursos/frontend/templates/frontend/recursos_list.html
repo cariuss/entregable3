@@ -1,17 +1,16 @@
-{# gestor_de_recursos/frontend/templates/frontend/recursos_list.html #}
+{# frontend/templates/frontend/recursos_list.html #}
 {% extends 'frontend/base.html' %}
-{% load static %}
 
-{% block titulo %}
-  Lista de Recursos
-{% endblock %}
+{% block titulo %}Listado de Recursos{% endblock %}
 
 {% block contenido %}
   <h1>Recursos</h1>
 
-  <button id="btn-nuevo-recurso">+ Nuevo Recurso</button>
+  <!-- Botón que disparará la generación del PDF -->
+  <button id="btn-descargar-pdf">Descargar PDF de Recursos</button>
 
-  <table border="1" id="tabla-recursos">
+  <!-- Tabla donde el JS va a inyectar las filas -->
+  <table id="tabla-recursos">
     <thead>
       <tr>
         <th>ID</th>
@@ -20,14 +19,12 @@
         <th>Tipo</th>
         <th>Cantidad Total</th>
         <th>Cantidad Disponible</th>
-        <th>Acciones</th>
+        <th>Fecha Creación</th>
+        <th>Fecha Actualización</th>
       </tr>
     </thead>
     <tbody>
-      {# Se llenará con JavaScript #}
+      {# Aquí Recursos.js añadirá <tr> dinámicamente #}
     </tbody>
   </table>
-
-  {# Incluir el script de listado y eliminación #}
-  <script src="{% static 'frontend/js/recursos.js' %}" defer></script>
 {% endblock %}
