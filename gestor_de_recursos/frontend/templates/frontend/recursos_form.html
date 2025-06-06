@@ -1,0 +1,46 @@
+{# gestor_de_recursos/frontend/templates/frontend/recursos_form.html #}
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block titulo %}
+  {% if pk %}Editar Recurso{% else %}Crear Recurso{% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <h1>{% if pk %}Editar{% else %}Crear{% endif %} Recurso</h1>
+
+  <form id="form-recurso">
+    {# Campo oculto para el ID; si es creación, pk estará vacío #}
+     <!-- Si estoy editando, pk contendrá el ID; si creo, pk estará vacío -->
+    <input type="hidden" id="recurso-id" value="{{ pk }}">
+   {# 1. Campo para ID (solo requerido si creamos un recurso nuevo) #}
+   {% if not pk %}
+   <label for="id">ID del Recurso:</label><br>
+   <input type="text" id="id" name="id" required><br><br>
+   {% endif %}
+
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="descripcion">Descripción:</label><br>
+    <textarea id="descripcion" name="descripcion"></textarea><br><br>
+
+    <label for="tipo">Tipo:</label><br>
+    <input type="text" id="tipo" name="tipo" required><br><br>
+
+    <label for="cantidad_total">Cantidad Total:</label><br>
+    <input type="number" id="cantidad_total" name="cantidad_total" min="0" required><br><br>
+
+    <label for="cantidad_disponible">Cantidad Disponible:</label><br>
+    <input type="number" id="cantidad_disponible" name="cantidad_disponible" min="0" required><br><br>
+
+    <button type="submit">{% if pk %}Actualizar{% else %}Guardar{% endif %}</button>
+  </form>
+
+  <button onclick="window.location.href='{% url 'frontend:recursos_list' %}'">
+    ← Volver a lista
+  </button>
+
+  {# Incluir el script de creación/edición #}
+  <script src="{% static 'frontend/js/recursos_form.js' %}" defer></script>
+{% endblock %}

@@ -4,9 +4,9 @@ from .views import UsuarioViewSet
 
 
 router = DefaultRouter()
-router.register(r'api/v1', UsuarioViewSet , 'usuarios')
+router.register(r"api/v1", UsuarioViewSet, "usuarios")
 
 
 urlpatterns = [
-    path('', include(router.urls)),
-    ]
+    path("", include(router.urls)),
+]

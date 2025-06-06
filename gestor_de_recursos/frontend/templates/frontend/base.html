@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block titulo %}Gestor de Recursos{% endblock %}</title>
+
+    <!-- Usamos el tag static para referenciar archivos estáticos -->
+    <link rel="stylesheet" href="{% static 'frontend/css/styles.css' %}" />
+
+    <!-- Incluimos los JS que harán fetch a los endpoints -->
+    <script src="{% static 'frontend/js/recursos.js' %}" defer></script>
+    <script src="{% static 'frontend/js/peticiones.js' %}" defer></script>
+    <script src="{% static 'frontend/js/usuarios.js' %}" defer></script>
+    <script src="{% static 'frontend/js/login.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'frontend:recursos_list' %}">Recursos</a> |
+            <a href="{% url 'frontend:peticiones_list' %}">Peticiones</a> |
+            <a href="{% url 'frontend:usuarios_list' %}">Usuarios</a> |
+            <a href="{% url 'frontend:login' %}">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block contenido %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 Gestor de Recursos</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{# gestor_de_recursos/frontend/templates/frontend/recursos_list.html #}
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block titulo %}
+  Lista de Recursos
+{% endblock %}
+
+{% block contenido %}
+  <h1>Recursos</h1>
+
+  <button id="btn-nuevo-recurso">+ Nuevo Recurso</button>
+
+  <table border="1" id="tabla-recursos">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Tipo</th>
+        <th>Cantidad Total</th>
+        <th>Cantidad Disponible</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {# Se llenará con JavaScript #}
+    </tbody>
+  </table>
+
+  {# Incluir el script de listado y eliminación #}
+  <script src="{% static 'frontend/js/recursos.js' %}" defer></script>
+{% endblock %}
