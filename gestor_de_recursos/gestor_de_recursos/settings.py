@@ -150,17 +150,14 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ALLOWED_HOSTS = ["*", ".vercel.app", ".ngrok-free.app"]
 CORS_ALLOWED_ORIGINS = [
-    "https://equipo4-gestor-de-recursos.vercel.app",
     "http://localhost:5173",
     "http://localhost:5174",
     "http://localhost:3000",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://equipo4-gestor-de-recursos.vercel.app/",
     "https://8e19-190-121-129-147.ngrok-free.app/",
     "https://*.ngrok-free.app/",
-    "https://entregable3-chi.vercel.app/",
 ]
 
 CORS_ALLOW_HEADERS = [
