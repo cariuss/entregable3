@@ -1,0 +1,46 @@
+{% extends 'frontend/base.html' %}
+
+{% block titulo %}
+  {% if pk %}Editar Petición{% else %}Crear Petición{% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <h1>
+    {% if pk %}Editar{% else %}Crear{% endif %} Petición
+  </h1>
+  <form id="form-peticion">
+    <!-- Ocultamos el pk para distinguir create vs edit -->
+    <input type="hidden" id="peticion-id" value="{{ pk }}">
+
+    <label for="recurso">Recurso:</label><br>
+    <select id="recurso"></select><br><br>
+
+    <label for="cantidad_solicitada">Cantidad Solicitada:</label><br>
+    <input type="number" id="cantidad_solicitada" name="cantidad_solicitada" min="1" required><br><br>
+
+    <label for="fecha_entrega_esperada">Fecha Entrega Esperada:</label><br>
+    <input type="date" id="fecha_entrega_esperada" name="fecha_entrega_esperada" required><br><br>
+
+    <label for="fecha_devolucion_esperada">Fecha Devolución Esperada:</label><br>
+    <input type="date" id="fecha_devolucion_esperada" name="fecha_devolucion_esperada"><br><br>
+
+    <label for="estado">Estado:</label><br>
+    <select id="estado" name="estado">
+      <option value="pendiente">Pendiente</option>
+      <option value="aprobada">Aprobada</option>
+      <option value="rechazada">Rechazada</option>
+      <option value="entregada">Entregada</option>
+      <option value="devuelta">Devuelta</option>
+    </select><br><br>
+
+    <label for="notas">Notas:</label><br>
+    <textarea id="notas" name="notas"></textarea><br><br>
+
+    <button type="submit">
+      {% if pk %}Actualizar{% else %}Guardar{% endif %}
+    </button>
+  </form>
+  <button onclick="window.location.href='{% url 'frontend:peticiones_list' %}'">
+    Volver a lista
+  </button>
+{% endblock %}

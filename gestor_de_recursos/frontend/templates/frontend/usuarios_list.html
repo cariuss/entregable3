@@ -1,0 +1,25 @@
+{# frontend/templates/frontend/usuarios_list.html #}
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block titulo %}Lista de Usuarios{% endblock %}
+
+{% block contenido %}
+  <h1>Usuarios</h1>
+  <button id="btn-nuevo-usuario">+ Nuevo Usuario</button>
+
+  <table border="1" id="tabla-usuarios" style="width:100%; margin-top: 1em;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {# Aquí ‘usuarios.js’ inyectará una fila por cada usuario #}
+    </tbody>
+  </table>
+{% endblock %}

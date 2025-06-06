@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tablaBody = document.querySelector('#tabla-usuarios tbody');
     const btnNuevo = document.getElementById('btn-nuevo-usuario');
+
     const getToken = () => localStorage.getItem('access_token');
 
     if (tablaBody) {
@@ -27,18 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
               <td>${item.id}</td>
               <td>${item.nombre}</td>
               <td>${item.correo}</td>
+              <td>${item.rol}</td>
               <td>
                 <a href="/usuarios/editar/${item.id}/">Editar</a>
-                <button data-id="${item.id}" class="btn-eliminar">Eliminar</button>
+                <button data-id="${item.id}" class="btn-eliminar-usuario">Eliminar</button>
               </td>
             `;
                     tablaBody.appendChild(tr);
                 });
 
-                document.querySelectorAll('.btn-eliminar').forEach(btn => {
+                document.querySelectorAll('.btn-eliminar-usuario').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const id = btn.getAttribute('data-id');
-                        if (!confirm(`¿Eliminar usuario ${id}?`)) return;
+                        if (!confirm(`¿Eliminar usuario con ID ${id}?`)) return;
 
                         fetch(`/usuarios/api/v1/${id}/`, {
                             method: 'DELETE',

@@ -4,7 +4,7 @@ from .views import UsuarioViewSet
 
 
 router = DefaultRouter()
-router.register(r"api/v1", UsuarioViewSet, "usuarios")
+router.register(r"", UsuarioViewSet, "usuarios")
 
 
 urlpatterns = [

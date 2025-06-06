@@ -2,53 +2,84 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const tablaBody = document.querySelector('#tabla-peticiones tbody');
-    const btnNuevo = document.getElementById('btn-nuevo-peticion');
+    const btnNueva = document.getElementById('btn-nueva-peticion');
+
+    // ---------------------------------------------------
+    // 1) Función para tomar el token de localStorage
+    // ---------------------------------------------------
     const getToken = () => localStorage.getItem('access_token');
 
+    // ---------------------------------------------------
+    // 2) Listar todas las peticiones
+    // ---------------------------------------------------
     if (tablaBody) {
+        const token = getToken();
+        let headersFetch = { 'Content-Type': 'application/json' };
+        if (token) headersFetch['Authorization'] = `Bearer ${token}`;
+
         fetch('/peticiones/api/v1/', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
-            }
+            headers: headersFetch
         })
             .then(response => {
                 if (response.status === 401 || response.status === 403) {
+                    // Si no está autenticado, redirigimos al login
                     window.location.href = '/login/';
                     throw new Error('No autorizado');
                 }
                 return response.json();
             })
             .then(data => {
+                // Limpiamos el <tbody> antes de poblar
                 tablaBody.innerHTML = '';
+
                 data.forEach(item => {
                     const tr = document.createElement('tr');
+
+                    // Una fila por cada SolicitudRecurso:
                     tr.innerHTML = `
               <td>${item.id}</td>
-              <td>${item.titulo || ''}</td>
-              <td>${item.detalle || ''}</td>
+              <td>${item.usuario.nombre || item.usuario.correo}</td>
+              <td>${item.recurso}</td>
+              <td>${item.cantidad_solicitada}</td>
+              <td>${new Date(item.fecha_solicitud).toLocaleString()}</td>
+              <td>${item.estado}</td>
               <td>
-                <a href="/peticiones/editar/${item.id}/">Editar</a>
-                <button data-id="${item.id}" class="btn-eliminar">Eliminar</button>
+                <button class="btn-editar-peticion" data-id="${item.id}">Editar</button>
+                <button class="btn-eliminar-peticion" data-id="${item.id}">Eliminar</button>
               </td>
             `;
                     tablaBody.appendChild(tr);
                 });
 
-                document.querySelectorAll('.btn-eliminar').forEach(btn => {
+                // ---------------------------------------------------
+                // 3) Botones “Editar” (redirigir al formulario)
+                // ---------------------------------------------------
+                document.querySelectorAll('.btn-editar-peticion').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const id = btn.getAttribute('data-id');
-                        if (!confirm(`¿Eliminar petición ${id}?`)) return;
+                        window.location.href = `/peticiones/editar/${id}/`;
+                    });
+                });
+
+                // ---------------------------------------------------
+                // 4) Botones “Eliminar”
+                // ---------------------------------------------------
+                document.querySelectorAll('.btn-eliminar-peticion').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        if (!confirm(`¿Eliminar la petición #${id}?`)) return;
+
+                        const token2 = getToken();
+                        let headers2 = { 'Content-Type': 'application/json' };
+                        if (token2) headers2['Authorization'] = `Bearer ${token2}`;
 
                         fetch(`/peticiones/api/v1/${id}/`, {
                             method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${getToken()}`
-                            }
+                            headers: headers2
                         })
                             .then(resp => {
                                 if (resp.status === 204) {
+                                    // Quitamos la fila del DOM
                                     btn.closest('tr').remove();
                                 } else if (resp.status === 401 || resp.status === 403) {
                                     window.location.href = '/login/';
@@ -59,13 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
             })
-            .catch(err => {
-                console.error('Error al obtener peticiones:', err);
-            });
+            .catch(err => console.error('Error al obtener peticiones:', err));
     }
 
-    if (btnNuevo) {
-        btnNuevo.addEventListener('click', () => {
+    // ---------------------------------------------------
+    // 5) Botón “Nueva Petición” → redirige al formulario
+    // ---------------------------------------------------
+    if (btnNueva) {
+        btnNueva.addEventListener('click', () => {
             window.location.href = '/peticiones/nuevo/';
         });
     }

@@ -1,0 +1,51 @@
+{# frontend/templates/frontend/usuarios_form.html #}
+{% extends 'frontend/base.html' %}
+
+{% block titulo %}
+  {% if pk %}Editar Usuario{% else %}Crear Usuario{% endif %}
+{% endblock %}
+
+{% block contenido %}
+  <h1>
+    {% if pk %}Editar{% else %}Crear{% endif %} Usuario
+  </h1>
+
+  <form id="form-usuario">
+    <input type="hidden" id="usuario-id" value="{{ pk }}">
+
+    {% if not pk %}
+      <label for="id">ID de Usuario:</label><br>
+      <input type="number" id="id" name="id" required><br><br>
+    {% endif %}
+
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="correo">Correo:</label><br>
+    <input type="email" id="correo" name="correo" required><br><br>
+
+    <label for="numero">Número:</label><br>
+    <input type="text" id="numero" name="numero" required><br><br>
+
+    <label for="direccion">Dirección:</label><br>
+    <input type="text" id="direccion" name="direccion" required><br><br>
+
+    <label for="rol">Rol:</label><br>
+    <select id="rol" name="rol">
+      <option value="administrador">Administrador</option>
+      <option value="usuario_estandar">Usuario Estándar</option>
+      <option value="supervisor">Supervisor</option>
+    </select><br><br>
+
+    <label for="password">
+      {% if pk %}Nueva Contraseña (opcional):{% else %}Contraseña:{% endif %}
+    </label><br>
+    <input type="password" id="password" name="password" {% if not pk %}required{% endif %}><br><br>
+
+    <button type="submit">{% if pk %}Actualizar{% else %}Guardar{% endif %}</button>
+  </form>
+
+  <button onclick="window.location.href='{% url 'frontend:usuarios_list' %}'">
+    Volver a lista
+  </button>
+{% endblock %}

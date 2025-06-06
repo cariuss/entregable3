@@ -1,0 +1,24 @@
+{% extends 'frontend/base.html' %}
+
+{% block titulo %}Listado de Peticiones{% endblock %}
+
+{% block contenido %}
+  <h1>Peticiones</h1>
+  <button id="btn-nueva-peticion">Nueva Petición</button>
+  <table id="tabla-peticiones">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Recurso</th>
+        <th>Cantidad</th>
+        <th>Fecha Solicitud</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí el JS insertará cada fila -->
+    </tbody>
+  </table>
+{% endblock %}
