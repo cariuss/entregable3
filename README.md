@@ -39,8 +39,6 @@ En este tercer entregable tuvimos varios problemas.
 
 El despliegue del backend se hizo en ngrok dando apertura a un puerto para poder hacer peticiones al local, por ende, permite consumir el backend de manera externa mientras este se ejecute en local.
 
-El front se desplegó en vercel teniendo el siguiente enlace https://entregable3-chi.vercel.app/
-
-el backend está corriendo localmente en la pc de Carlos Guillent con este enlace https://0204-2803-1800-4017-b892-702a-1cc1-fcbc-e3c8.ngrok-free.app dando acceso de manera no tan acertiva a todo en general.
+Tanto front como el backend está corriendo localmente en la pc de Carlos Guillent con este enlace https://1e0d-190-121-129-147.ngrok-free.app/ dando acceso de manera no tan acertiva a todo en general.
 
 se debió abrir puertos y quitar auth para poder acceder a lo guardado en bd sin problemas.
