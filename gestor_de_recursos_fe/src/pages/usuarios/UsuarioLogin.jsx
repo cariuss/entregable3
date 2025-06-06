@@ -11,7 +11,7 @@ export const UsuarioLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault(correo, contraseña);
-    const res = await fetch("https://da89-190-121-129-147.ngrok-free.app/login/", {
+    const res = await fetch("http://localhost:8000/login/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ correo, password: contraseña }),
